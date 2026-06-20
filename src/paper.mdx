@@ -52,7 +52,7 @@ import Picture from "./components/Picture.astro";
 import Cards from "./components/Cards.astro";
 import Card from "./components/Card.astro";
 import Video from "./components/Video.astro";
-import Carousel from "./components/Carousel.astro";
+import VideoCarousel from "./components/VideoCarousel.astro";
 import CarouselSlide from "./components/CarouselSlide.astro";
 
 import pipeline from "./assets/pipeline.jpeg";
@@ -165,15 +165,15 @@ We deploy Flow6D on a physical robot to estimate poses in real time and drive ma
 #### Pick the mug and place to box
 
 <Figure>
-  <Carousel slot="figure">
+  <VideoCarousel slot="figure">
     <CarouselSlide>
       <Video src={blackMug} />
     </CarouselSlide>
     <CarouselSlide>
       <Video src={yellowMug} />
     </CarouselSlide>
-  </Carousel>
-  <Fragment slot="caption">Pick the mug and place it into the box — black mug and yellow mug variants. Use the arrows to switch.</Fragment>
+  </VideoCarousel>
+  <Fragment slot="caption">Pick the mug and place it into the box — black mug and yellow mug variants.</Fragment>
 </Figure>
 
 #### Pour from mug to bottle
@@ -193,15 +193,15 @@ We deploy Flow6D on a physical robot to estimate poses in real time and drive ma
 #### Pour from bottle to mug
 
 <Figure>
-  <Carousel slot="figure">
+  <VideoCarousel slot="figure">
     <CarouselSlide>
       <Video src={bottleToMug} />
     </CarouselSlide>
     <CarouselSlide>
       <Video src={bottleToMug2} />
     </CarouselSlide>
-  </Carousel>
-  <Fragment slot="caption">Pouring water from a bottle into a mug — two viewpoints. Use the arrows to switch.</Fragment>
+  </VideoCarousel>
+  <Fragment slot="caption">Pouring water from a bottle into a mug — two viewpoints.</Fragment>
 </Figure>
 
 ### Articulated objects
@@ -209,29 +209,29 @@ We deploy Flow6D on a physical robot to estimate poses in real time and drive ma
 #### Close laptop
 
 <Figure>
-  <Carousel slot="figure">
+  <VideoCarousel slot="figure">
     <CarouselSlide>
       <Video src={closeLaptop} />
     </CarouselSlide>
     <CarouselSlide>
       <Video src={closeLaptop2} />
     </CarouselSlide>
-  </Carousel>
-  <Fragment slot="caption">Closing a laptop — two viewpoints. Use the arrows to switch.</Fragment>
+  </VideoCarousel>
+  <Fragment slot="caption">Closing a laptop — two viewpoints.</Fragment>
 </Figure>
 
 #### Open laptop
 
 <Figure>
-  <Carousel slot="figure">
+  <VideoCarousel slot="figure">
     <CarouselSlide>
       <Video src={openLaptop1} />
     </CarouselSlide>
     <CarouselSlide>
       <Video src={openLaptop2} />
     </CarouselSlide>
-  </Carousel>
-  <Fragment slot="caption">Opening a laptop — two viewpoints. Use the arrows to switch.</Fragment>
+  </VideoCarousel>
+  <Fragment slot="caption">Opening a laptop — two viewpoints.</Fragment>
 </Figure>
 
 ## BibTeX
