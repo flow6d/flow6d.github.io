@@ -51,8 +51,9 @@ import Figure from "./components/Figure.astro";
 import Picture from "./components/Picture.astro";
 import Cards from "./components/Cards.astro";
 import Card from "./components/Card.astro";
-import TwoColumns from "./components/TwoColumns.astro";
-import VideoPlaceholder from "./components/VideoPlaceholder.astro";
+import Video from "./components/Video.astro";
+import Carousel from "./components/Carousel.astro";
+import CarouselSlide from "./components/CarouselSlide.astro";
 
 import pipeline from "./assets/pipeline.jpeg";
 import framework from "./assets/framework.jpeg";
@@ -63,6 +64,17 @@ import real275Results from "./assets/real275_results.png";
 import artimageResults from "./assets/artimage_results.png";
 import rigidExperiment from "./assets/rigid_experiment.png";
 import articulatedExperiment from "./assets/articulated_experiment.png";
+
+import blackMug from "./assets/video/black_mug.mp4";
+import yellowMug from "./assets/video/yellow_mug.mp4";
+import mugToBottle from "./assets/video/mug_to_bottle.mp4";
+import bottleToBowl from "./assets/video/bottle_to_bowl.mp4";
+import bottleToMug from "./assets/video/bottle_to_mug.mp4";
+import bottleToMug2 from "./assets/video/bottle_to_mug2.mp4";
+import closeLaptop from "./assets/video/close_laptop.mp4";
+import closeLaptop2 from "./assets/video/close_laptop2.mp4";
+import openLaptop1 from "./assets/video/open_laptop1.mp4";
+import openLaptop2 from "./assets/video/open_laptop2.mp4";
 
 <Figure>
   <Picture slot="figure" src={pipeline} alt="Prior candidate-based pose pipelines versus Flow6D." />
@@ -150,17 +162,77 @@ We deploy Flow6D on a physical robot to estimate poses in real time and drive ma
 
 ### Rigid objects
 
-<TwoColumns>
-  <VideoPlaceholder slot="left" label="Rigid object — grasping demo (coming soon)" />
-  <VideoPlaceholder slot="right" label="Rigid object — tracking demo (coming soon)" />
-</TwoColumns>
+#### Pick the mug and place to box
+
+<Figure>
+  <Carousel slot="figure">
+    <CarouselSlide>
+      <Video src={blackMug} />
+    </CarouselSlide>
+    <CarouselSlide>
+      <Video src={yellowMug} />
+    </CarouselSlide>
+  </Carousel>
+  <Fragment slot="caption">Pick the mug and place it into the box — black mug and yellow mug variants. Use the arrows to switch.</Fragment>
+</Figure>
+
+#### Pour from mug to bottle
+
+<Figure>
+  <Video slot="figure" src={mugToBottle} />
+  <Fragment slot="caption">Pouring water from a mug into a bottle.</Fragment>
+</Figure>
+
+#### Pour from bottle to bowl
+
+<Figure>
+  <Video slot="figure" src={bottleToBowl} />
+  <Fragment slot="caption">Pouring water from a bottle into a bowl.</Fragment>
+</Figure>
+
+#### Pour from bottle to mug
+
+<Figure>
+  <Carousel slot="figure">
+    <CarouselSlide>
+      <Video src={bottleToMug} />
+    </CarouselSlide>
+    <CarouselSlide>
+      <Video src={bottleToMug2} />
+    </CarouselSlide>
+  </Carousel>
+  <Fragment slot="caption">Pouring water from a bottle into a mug — two viewpoints. Use the arrows to switch.</Fragment>
+</Figure>
 
 ### Articulated objects
 
-<TwoColumns>
-  <VideoPlaceholder slot="left" label="Articulated object — manipulation demo (coming soon)" />
-  <VideoPlaceholder slot="right" label="Articulated object — tracking demo (coming soon)" />
-</TwoColumns>
+#### Close laptop
+
+<Figure>
+  <Carousel slot="figure">
+    <CarouselSlide>
+      <Video src={closeLaptop} />
+    </CarouselSlide>
+    <CarouselSlide>
+      <Video src={closeLaptop2} />
+    </CarouselSlide>
+  </Carousel>
+  <Fragment slot="caption">Closing a laptop — two viewpoints. Use the arrows to switch.</Fragment>
+</Figure>
+
+#### Open laptop
+
+<Figure>
+  <Carousel slot="figure">
+    <CarouselSlide>
+      <Video src={openLaptop1} />
+    </CarouselSlide>
+    <CarouselSlide>
+      <Video src={openLaptop2} />
+    </CarouselSlide>
+  </Carousel>
+  <Fragment slot="caption">Opening a laptop — two viewpoints. Use the arrows to switch.</Fragment>
+</Figure>
 
 ## BibTeX
 
