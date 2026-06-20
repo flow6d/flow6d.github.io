@@ -1,208 +1,174 @@
 ---
-title: Academic Project Page Template
+title: "Flow6D: Discrete-to-Continuous Flow Matching for Efficient and Accurate Category-Level 6D Pose Estimation"
 authors:
-  - name: Roman Hauksson
-    url: https://roman.technology
-    institution: University of Texas at Dallas
-    notes: ["*", †]
-  - name: Author Two
-    institution: Institution Two
-    notes: ["*", †]
-  - name: Author Three
-    institution: Institution Three
-    notes: ["*"]
-  - name: Author Four
-    institution: Institution Four
-conference: Conference Name
+  - name: Mingyu Mei
+    notes: ["1", "*"]
+  - name: Li Zhang
+    notes: ["2", "*"]
+  - name: Zibo Dai
+    notes: ["1"]
+  - name: Han Sun
+    notes: ["3"]
+  - name: Xinyue Zhao
+    notes: ["1"]
+  - name: Huiliang Shen
+    notes: ["1"]
+  - name: Zaixing He
+    notes: ["1", "†"]
+conference: "IEEE Robotics and Automation Letters (RA-L)"
 notes:
+  - symbol: "1"
+    text: Zhejiang University
+  - symbol: "2"
+    text: University of Science and Technology of China
+  - symbol: "3"
+    text: Shanghai Jiao Tong University
   - symbol: "*"
-    text: author note one
-  - symbol: †
-    text: author note two
+    text: Equal contribution
+  - symbol: "†"
+    text: "Corresponding author"
 links:
   - name: Paper
-    url: https://github.com/RomanHauksson/academic-project-astro-template
+    url: "#"
     icon: ri:file-pdf-2-line
-  - name: Code
-    url: https://github.com/RomanHauksson/academic-project-astro-template
-    icon: ri:github-line
   - name: arXiv
-    url: https://github.com/RomanHauksson/academic-project-astro-template
+    url: "#"
     icon: academicons:arxiv
-  - name: Slides
-    url: https://github.com/RomanHauksson/academic-project-astro-template
-    icon: ri:slideshow-2-line
+  - name: Code
+    url: "#"
+    icon: ri:github-line
 
-# The color theme of the page. Defaults to "device" (the preference set in the user's brower or operating system). Setting this to "light" or "dark" will override the user's preference. This is useful if your figures only look good in one theme.
 theme: device
-
-# This is the icon that appears in the user's browser tab. To customize, change the favicon.svg file in /public/, or add your own file to /public/ and change the filename here.
 favicon: favicon.svg
 
-# These keys are optional. If a link to your project page is in a Google search result, text message, or social media post, it will often appear as a "link preview card" based on its title, description, favicon, and thumbnail. After you publish your page, you can double check that these previews look right using [this tool](https://linkpreview.xyz/)
-description: Simple project page template for your research paper, built with Astro and Tailwind
-thumbnail: screenshot-light.png
+description: "Flow6D is a hierarchical discrete-to-continuous flow matching framework for category-level 6D pose estimation of rigid and articulated objects, reaching state-of-the-art accuracy at 70 FPS."
+thumbnail: real275.jpeg
 ---
 
-import Video from "./components/Video.astro";
 import HighlightedSection from "./components/HighlightedSection.astro";
 import SmallCaps from "./components/SmallCaps.astro";
 import Figure from "./components/Figure.astro";
 import Picture from "./components/Picture.astro";
-import ModelViewer from "./components/ModelViewer.astro"
+import Cards from "./components/Cards.astro";
+import Card from "./components/Card.astro";
 import TwoColumns from "./components/TwoColumns.astro";
-import YouTubeVideo from "./components/YouTubeVideo.astro";
-import Carousel from "./components/Carousel.astro";
-import CarouselSlide from "./components/CarouselSlide.astro";
-import Wide from "./components/Wide.astro";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/starwind/tabs";
-import { Comparison } from "./components/Comparison.tsx";
+import VideoPlaceholder from "./components/VideoPlaceholder.astro";
 
-import outside from "./assets/outside.mp4";
-import dogsDiffc from "./assets/dogs-diffc.png"
-import dogsTrue from "./assets/dogs-true.png"
-import dogsMsillm from "@/assets/dogs-msillm.jpg"
+import pipeline from "./assets/pipeline.jpeg";
+import framework from "./assets/framework.jpeg";
+import real275 from "./assets/real275.jpeg";
+import artimage from "./assets/artimage.jpeg";
+import robotarm from "./assets/robotarm.jpeg";
+import real275Results from "./assets/real275_results.png";
+import artimageResults from "./assets/artimage_results.png";
+import rigidExperiment from "./assets/rigid_experiment.png";
+import articulatedExperiment from "./assets/articulated_experiment.png";
 
-<Video src={outside} />
+<Figure>
+  <Picture slot="figure" src={pipeline} alt="Prior candidate-based pose pipelines versus Flow6D." />
+  <Fragment slot="caption">Prior methods rely on brute-force candidate sampling and ranking **(a)**. Flow6D **(b)** localizes a discrete latent space and then regresses a continuous pose — higher accuracy, much faster.</Fragment>
+</Figure>
 
 <HighlightedSection>
 
 ## Abstract
 
-This is a template you can use to create a professional project page for your research paper. [See the code for the template and instructions on how to use it yourself on GitHub](https://github.com/RomanHauksson/academic-project-astro-template). It's made with the [Astro web framework](https://astro.build/) and styled with [Tailwind](https://tailwindcss.com/). You write the content in [MDX](https://mdxjs.com/), which enables markdown formatting like **bold**, _italics_, and ~strikethrough~, as well as custom components like <SmallCaps>small caps.</SmallCaps>
+6D pose estimation is a key task in computer vision and embodied AI. Existing methods directly regress in a high-dimensional continuous space, facing two key challenges: limited accuracy due to noise and local optima, and inefficient search over an infinite space that hinders real-time performance. We propose **Flow6D**, a hierarchical flow matching framework with a two-stage _discrete latent space localization to continuous pose regression_ strategy. A discrete flow matching model first locks the latent space around the true pose to reduce search complexity; a continuous flow matching model then predicts local residuals to regress an accurate pose. The framework naturally extends to articulated objects, outperforming state-of-the-art methods on synthetic and real datasets with **real-time inference at 70 FPS**.
 
 </HighlightedSection>
 
-## Visuals
+## Highlights
 
-### Picture
+<Cards columns={3}>
+  <Card title="Discrete-to-Continuous" icon="ri:focus-3-line">
+     Discrete flow matching locks onto the latent space of the true pose; continuous flow matching then refines the residual, avoiding the local optima and noise sensitivity of direct regression.
+  </Card>
+  <Card title="Real-Time at 70 FPS" icon="ri:flashlight-line">
+     A compact structured search replaces costly brute-force candidate ranking, running in ~11 ms per frame on a single RTX 4090 â up to an order of magnitude faster while setting a new state of the art.
+  </Card>
+  <Card title="Rigid & Articulated" icon="ri:shapes-line">
+     One unified framework for both rigid and multi-part articulated objects, generalizing robustly under occlusion, clutter, and illumination changes.
+  </Card>
+</Cards>
 
-Use the `Picture` component to display images. If you have a figure in PDF format, you can pass in its path as the `src` prop and it will be converted into a web-friendly image automatically.
-
-<Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-
-### Wide visual
-
-I constrained the maximum width of the text column to make sure it's readable even when the screen is wide. But images and other visuals should "break out" and take up more horizontal space: for this, try wrapping them in the `Wide` component.
-
-<Wide>
-  <Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-</Wide>
-
-### Figure with caption
-
-Wrap a visual in a `Figure` component to add a caption.
+## Method
 
 <Figure>
-  <Picture slot="figure" src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  <Fragment slot="caption">A photo of two dogs running side-by-side in shallow water, lossily compressed using the [DiffC algorithm](https://jeremyiv.github.io/diffc-project-page/).</Fragment>
+  <Picture slot="figure" src={framework} alt="Two-stage Flow6D framework." />
+  <Fragment slot="caption">**Two-stage framework.** Stage I selects an anchor pose via discrete flow matching over uniformly sampled rotation/translation bins. Stage II refines it via continuous flow matching with adaptive latent pose sampling.</Fragment>
 </Figure>
 
-### Comparison slider
+Flow6D turns 6D pose estimation into a two-stage, discrete-to-continuous process:
 
-Use the `Comparison` component to compare two visuals with an interactive slider.
+- **Stage I — Latent localization.** Rotation (Euler angles) and translation are discretized into bins. A **discrete flow matching** model predicts the high-probability bin per dimension, collapsing an infinite continuous search into an efficient, stable classification that locks onto the true pose region.
+- **Anchor–Probs sampling.** The top-1 bin becomes the **anchor pose**; the top-$N$ bins define an uncertainty-aware initialization for refinement, keeping multi-modality while focusing on promising regions.
+- **Stage II — Continuous regression.** The point cloud is canonicalized by the anchor pose, then a **continuous flow matching** model regresses fine residuals through deterministic ODE solving — correcting discretization error to a precise 6D pose.
+- **Articulated objects.** A joint-centric extension predicts joint axis, origin, and state to propagate poses of child parts along the kinematic chain.
 
-<Comparison client:idle >
-  <Picture slot="itemOne" src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  <Picture slot="itemTwo" src={dogsTrue} alt="True photo of two dogs running side-by-side in shallow water" />
-</Comparison>
+## Results
 
-### Tab panels
+### Rigid objects — REAL275
 
-Tab panels are a great way to display a labeled collection of related visuals without taking up too much space.
+Using only depth input (no category prior), Flow6D sets a new state of the art while running **~5× faster** than the diffusion-based GenPose.
 
-<Tabs defaultValue="true">
-  <TabsList>
-    <TabsTrigger value="true">Ground truth</TabsTrigger>
-    <TabsTrigger value="diffc">DiffC (Flux-dev)</TabsTrigger>
-    <TabsTrigger value="msillm">MS-ILLM</TabsTrigger>
-  </TabsList>
-  <TabsContent value="true">
-    <Picture
-      src={dogsTrue}
-      alt="True photo of two dogs running side-by-side in shallow water"
-    />
-  </TabsContent>
-  <TabsContent value="diffc">
-    <Picture
-      src={dogsDiffc}
-      alt="Photo of two running dogs, lossily compressed using the DiffC algorithm"
-    />
-  </TabsContent>
-  <TabsContent value="msillm">
-    <Picture
-      src={dogsMsillm}
-      alt="Photo of two running dogs, lossily compressed using MS-ILLM"
-    />
-  </TabsContent>
-</Tabs>
+<Figure>
+  <Picture slot="figure" src={rigidExperiment} alt="Quantitative comparison on the REAL275 dataset." />
+  <Fragment slot="caption">**Quantitative comparison on REAL275** for category-level pose estimation.</Fragment>
+</Figure>
 
-### Carousel
+<Figure>
+  <Picture slot="figure" src={real275} alt="Qualitative results on the real-world REAL275 dataset." />
+  <Fragment slot="caption">**REAL275 qualitative results.** Red and green 3D boxes are ground truth and our predictions.</Fragment>
+</Figure>
 
-A carousel is another useful pattern for a collection of visuals that don't necessarily have meaningful labels.
+### Articulated objects — ArtImage
 
-<Carousel>
-  <CarouselSlide>
-    <Picture src={dogsTrue} alt="True photo of two dogs running side-by-side in shallow water" />
-  </CarouselSlide>
-  <CarouselSlide>
-    <Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  </CarouselSlide>
-  <CarouselSlide>
-    <Picture
-      src={dogsMsillm}
-      alt="Photo of two running dogs, lossily compressed using MS-ILLM"
-    />
-  </CarouselSlide>
-</Carousel>
+Flow6D achieves the lowest per-part rotation and translation errors while running two-to-three orders of magnitude faster than optimization-based baselines.
 
-## Two columns
+<Figure>
+  <Picture slot="figure" src={articulatedExperiment} alt="Comparison with state-of-the-art methods on the ArtImage dataset." />
+  <Fragment slot="caption">**Comparison on ArtImage** across Laptop, Eyeglasses, Dishwasher, Scissors, and Drawer categories.</Fragment>
+</Figure>
 
-Use the two columns component to display two columns of content. In this example, the first column contains a YouTube video embed and the second column contains an interactive 3D model viewer. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+<Figure>
+  <Picture slot="figure" src={artimage} alt="Qualitative results on the ArtImage dataset." />
+  <Fragment slot="caption">**ArtImage qualitative results** — accurate per-part poses even at joints and under partial occlusion.</Fragment>
+</Figure>
+
+## Real-world generalization
+
+Tested on the real-world REAL275 and 7-part RobotArm datasets, Flow6D stays robust under illumination changes, occlusion, and clutter — supporting practical deployment such as robotic grasping.
+
+<Figure>
+  <Picture slot="figure" src={robotarm} alt="Qualitative results on the real-world RobotArm dataset." />
+  <Fragment slot="caption">**RobotArm results** — robust on complex, multi-part articulations in real-world settings.</Fragment>
+</Figure>
+
+## Real-Robot Experiments
+
+We deploy Flow6D on a physical robot to estimate poses in real time and drive manipulation. Results are organized by object type.
+
+### Rigid objects
 
 <TwoColumns>
-  <YouTubeVideo slot="left" videoId="wjZofJX0v4M" />
-  <ModelViewer slot="right" src="/BoxVertexColors.glb" alt="A cube colored with a rainbow gradient" />
+  <VideoPlaceholder slot="left" label="Rigid object — grasping demo (coming soon)" />
+  <VideoPlaceholder slot="right" label="Rigid object — tracking demo (coming soon)" />
 </TwoColumns>
 
-## $\LaTeX$
+### Articulated objects
 
-You can also add $\LaTeX$ formulas, rendered during the build process using [$\KaTeX$](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: $a^2 + b^2 = c^2$. Or, you can write them as a block:
+<TwoColumns>
+  <VideoPlaceholder slot="left" label="Articulated object — manipulation demo (coming soon)" />
+  <VideoPlaceholder slot="right" label="Articulated object — tracking demo (coming soon)" />
+</TwoColumns>
 
-$$
-\int_a^b f(x) dx
-$$
-
-## Citation
-
-If you copy your bibliography into `./bibliography.bib`, you can cite papers using their BibTeX keys, and they'll be automatically formatted and included in the bibliography section at the end. For example: [@vaswani2017attention]. Note that these citations are distinct from footnotes[^mynote], which show up in a separate section if you use them.
-
-[^mynote]: On the web, they should really be called "endnotes", since each page constitutes a full document.
-
-## Table
-
-Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
-
-| Model | Accuracy | F1 score | Training time (hours) |
-| :--- | :---: | :---: | :---: |
-| BERT-base | 0.89 | 0.87 | 4.5 |
-| RoBERTa-large | 0.92 | 0.91 | 7.2 |
-| DistilBERT | 0.86 | 0.84 | 2.1 |
-| XLNet | 0.90 | 0.89 | 6.8 |
-
-## BibTeX citation
-
-Displaying the BibTeX entry for your paper in a code block makes it easy to copy and paste.
+## BibTeX
 
 ```bibtex
-@misc{roman2024academic,
-  author = "{Roman Hauksson}",
-  title = "Academic Project Page Template",
-  year = "2024",
-  howpublished = "\url{https://research-template.roman.technology}",
+@article{mei2026flow6d,
+  author  = "Mingyu Mei and Li Zhang and Zibo Dai and Han Sun and Xinyue Zhao and Huiliang Shen and Zaixing He",
+  title   = "Flow6D: Discrete-to-Continuous Flow Matching for Efficient and Accurate Category-Level 6D Pose Estimation",
+  journal = "IEEE Robotics and Automation Letters (RA-L)",
+  year    = "2026",
 }
 ```
-
-## Bibliography
-
-[^ref]
