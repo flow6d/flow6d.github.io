@@ -72,25 +72,24 @@ import articulatedExperiment from "./assets/articulated_experiment.png";
 
 6D pose estimation is a key task in computer vision and embodied AI. Existing methods directly regress in a high-dimensional continuous space, facing two key challenges: limited accuracy due to noise and local optima, and inefficient search over an infinite space that hinders real-time performance. We propose **Flow6D**, a hierarchical flow matching framework with a two-stage _discrete latent space localization to continuous pose regression_ strategy. A discrete flow matching model first locks the latent space around the true pose to reduce search complexity; a continuous flow matching model then predicts local residuals to regress an accurate pose. The framework naturally extends to articulated objects, outperforming state-of-the-art methods on synthetic and real datasets with **real-time inference at 70 FPS**.
 
-</HighlightedSection>
-
-## Highlights
-
 <Cards columns={3}>
   <Card title="Discrete-to-Continuous" icon="ri:focus-3-line">
-     Discrete flow matching locks onto the latent space of the true pose; continuous flow matching then refines the residual, avoiding the local optima and noise sensitivity of direct regression.
+     Discrete flow matching localizes the true-pose latent space, while continuous flow matching refines residuals, reducing the local-optimum and noise sensitivity of direct regression.
+
   </Card>
   <Card title="Real-Time at 70 FPS" icon="ri:flashlight-line">
-     A compact structured search replaces costly brute-force candidate ranking, running in ~11 ms per frame on a single RTX 4090 â up to an order of magnitude faster while setting a new state of the art.
+     A compact structured search replaces costly brute-force candidate ranking, running in ~11 ms per frame on a single RTX 4090 .
   </Card>
   <Card title="Rigid & Articulated" icon="ri:shapes-line">
      One unified framework for both rigid and multi-part articulated objects, generalizing robustly under occlusion, clutter, and illumination changes.
   </Card>
 </Cards>
 
+</HighlightedSection>
+
 ## Method
 
-<Figure>
+<Figure fullWidth>
   <Picture slot="figure" src={framework} alt="Two-stage Flow6D framework." />
   <Fragment slot="caption">**Two-stage framework.** Stage I selects an anchor pose via discrete flow matching over uniformly sampled rotation/translation bins. Stage II refines it via continuous flow matching with adaptive latent pose sampling.</Fragment>
 </Figure>
