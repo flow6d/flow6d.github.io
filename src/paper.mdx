@@ -51,6 +51,7 @@ import Figure from "./components/Figure.astro";
 import Picture from "./components/Picture.astro";
 import Cards from "./components/Cards.astro";
 import Card from "./components/Card.astro";
+import RealWorldExperiments from "./components/RealWorldExperiments.astro";
 
 import pipeline from "./assets/pipeline.jpeg";
 import framework from "./assets/framework.jpeg";
@@ -131,9 +132,13 @@ Flow6D achieves the lowest per-part rotation and translation errors while runnin
   <Fragment slot="caption">**ArtImage qualitative results** — accurate per-part poses even at joints and under partial occlusion.</Fragment>
 </Figure>
 
-## Real-world generalization
+## Real-world experiments
 
-Tested on the real-world REAL275 and 7-part RobotArm datasets, Flow6D stays robust under illumination changes, occlusion, and clutter — supporting practical deployment such as robotic grasping.
+We evaluate Flow6D on rigid and articulated objects in real-world scenes. The videos show stable pose tracking through object motion, interaction, and articulation under changing viewpoints and partial occlusion.
+
+<RealWorldExperiments />
+
+Beyond these object-level experiments, Flow6D also generalizes to the complex 7-part RobotArm dataset.
 
 <Figure>
   <Picture slot="figure" src={robotarm} alt="Qualitative results on the real-world RobotArm dataset." />
